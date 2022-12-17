@@ -220,7 +220,7 @@ pub fn get_current_time_in_milliseconds() -> i64 {
     // Following unsafe block includes one system call to get monotonic time.
     // Therefore, it is not considered harmful.
     unsafe { libc::clock_gettime(libc::CLOCK_MONOTONIC_RAW, &mut current_time) };
-    current_time.tv_sec as i64 * 1000 + (current_time.tv_nsec as i64 / 1_000_000)
+    current_time.tv_sec * 1000 + (current_time.tv_nsec / 1_000_000)
 }
 
 /// Converts a response code as returned by the Android Protected Confirmation HIDL compatibility

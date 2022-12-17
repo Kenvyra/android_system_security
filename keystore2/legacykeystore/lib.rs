@@ -505,7 +505,7 @@ impl LegacyKeystore {
                 if let Some(key) = SUPER_KEY
                     .read()
                     .unwrap()
-                    .get_per_boot_key_by_user_id(uid_to_android_user(uid as u32))
+                    .get_per_boot_key_by_user_id(uid_to_android_user(uid))
                 {
                     key.decrypt(ciphertext, iv, tag)
                 } else {
