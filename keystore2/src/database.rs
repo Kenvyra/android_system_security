@@ -4562,7 +4562,7 @@ pub mod tests {
                 DESTINATION_UID,
                 |k, av| {
                     assert_eq!(Domain::SELINUX, k.domain);
-                    assert_eq!(DESTINATION_NAMESPACE as i64, k.nspace);
+                    assert_eq!(DESTINATION_NAMESPACE, k.nspace);
                     assert!(av.is_none());
                     Ok(())
                 },
