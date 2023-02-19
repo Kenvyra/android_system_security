@@ -121,7 +121,7 @@ fn list_participants() -> Result<Vec<SharedSecretParticipant>> {
     let mut legacy_strongbox_found: bool = false;
     Ok([(4, 1), (4, 0)]
         .iter()
-        .map(|(ma, mi)| {
+        .flat_map(|(ma, mi)| {
             get_hidl_instances(KEYMASTER_PACKAGE_NAME, *ma, *mi, KEYMASTER_INTERFACE_NAME)
                 .into_iter()
                 .filter_map(|name| {
@@ -140,8 +140,6 @@ fn list_participants() -> Result<Vec<SharedSecretParticipant>> {
                 })
                 .collect::<Vec<SharedSecretParticipant>>()
         })
-        .into_iter()
-        .flatten()
         .chain({
             get_aidl_instances(SHARED_SECRET_PACKAGE_NAME, 1, SHARED_SECRET_INTERFACE_NAME)
                 .into_iter()
